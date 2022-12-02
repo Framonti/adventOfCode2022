@@ -1,9 +1,7 @@
+from src.challenges import read_input_removing_new_line
 from rps_enum import OpponentRPS, ShapeStrategyRPS, retrieve_shape_points, ResultStrategyRPS
 
-with open('input.txt', 'r') as input_file:
-    input_data = input_file.readlines()
-
-rps_strategies = [rps_strategy[:-1] for rps_strategy in input_data]
+rps_strategies = read_input_removing_new_line('input.txt')
 
 predicted_matches_guide = [match.split(' ') for match in rps_strategies]
 predicted_matches = [[OpponentRPS(match[0]), ShapeStrategyRPS(match[1])] for match in predicted_matches_guide]
