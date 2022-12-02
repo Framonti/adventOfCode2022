@@ -1,11 +1,9 @@
+from src.challenges import read_input_removing_new_line
 import itertools
 
-with open('input.txt', 'r') as input_file:
-    input_data = input_file.readlines()
+input_data = read_input_removing_new_line('input.txt')
 
-input_data_without_new_line = [calorie_value[:-1] for calorie_value in input_data]
-
-calorie_split_per_elf_str = [list(group) for is_key, group in itertools.groupby(input_data_without_new_line,
+calorie_split_per_elf_str = [list(group) for is_key, group in itertools.groupby(input_data,
                                                                                 lambda sep: sep == '') if not is_key]
 
 calorie_split_per_elf = [map(int, calorie_per_elf) for calorie_per_elf in calorie_split_per_elf_str]
