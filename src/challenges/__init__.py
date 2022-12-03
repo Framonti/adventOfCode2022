@@ -1,1 +1,1 @@
-from src.challenges.utils import read_input_removing_new_line
+from src.challenges.utils import *
