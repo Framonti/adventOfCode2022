@@ -1,4 +1,5 @@
 from itertools import islice
+from itertools import groupby
 
 
 def read_input_removing_new_line(path):
@@ -11,3 +12,7 @@ def read_input_removing_new_line(path):
 def split_list_into_chunks(list_to_split, chuck_size):
     it = iter(list_to_split)
     return iter(lambda: tuple(islice(it, chuck_size)), ())
+
+
+def group_by_separator(input_data, separator=''):
+    return [list(group) for is_key, group in groupby(input_data, lambda sep: sep == '') if not is_key]
