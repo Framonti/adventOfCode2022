@@ -10,7 +10,16 @@ class Order:
         self.ending_position = int(order_info_raw[2])
 
 
-def execute_order(crates_positions: dict, order: Order):
+def execute_order_crate_mover_9000(crates_positions: dict, order: Order):
     for i in range(order.crates_to_move):
         crate_to_move = crates_positions[order.starting_position].get()
         crates_positions[order.ending_position].put(crate_to_move)
+
+
+def execute_order_crate_mover_9001(crates_positions: dict, order: Order):
+    crates_to_move = []
+    for i in range(order.crates_to_move):
+        crates_to_move.append(crates_positions[order.starting_position].get())
+    crates_to_move.reverse()
+    for crate in crates_to_move:
+        crates_positions[order.ending_position].put(crate)
