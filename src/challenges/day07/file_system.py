@@ -1,5 +1,6 @@
 import uuid
 
+
 class File:
     def __init__(self, file_name, file_size):
         self.name = file_name
@@ -21,7 +22,6 @@ class FileSystem:
         self.root_id = uuid.uuid4()
         self.file_system[self.root_id] = Directory('/', None, self.root_id)
         self.current_dir: Directory = self.file_system[self.root_id]
-
 
     def add_directory(self, directory_to_add_name: str):
         dir_id = uuid.uuid4()
@@ -54,3 +54,9 @@ class FileSystem:
 
     def get_dir_by_size(self, threshold):
         return [directory for directory in self.file_system.values() if directory.tot_size <= threshold]
+
+    def get_all_dir(self):
+        return [directory for directory in self.file_system.values()]
+
+    def get_currently_used_space(self):
+        return self.file_system[self.root_id].tot_size
