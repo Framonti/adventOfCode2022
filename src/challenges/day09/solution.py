@@ -20,15 +20,40 @@ def execute_movement(positions, movement: Movement):
     tail_final_position = tail_position
     for _ in range(movement.times):
         head_final_position = movement.execute_head_move(head_position)
-        tail_final_position = movement.execute_tail_move(head_final_position=head_final_position,
-                                                         tail_starting_position=tail_position)
+        tail_final_position = movement.execute_knot_move(prev_knot_final_position=head_final_position,
+                                                         current_knot_starting_position=tail_position)
         tail_position_seen.add(tail_final_position)
         head_position = head_final_position
         tail_position = tail_final_position
     return [head_final_position, tail_final_position]
 
 
-a = reduce(execute_movement, rope_movements, starting_positions)
+reduce(execute_movement, rope_movements, starting_positions)
 
 unique_position_count = len(tail_position_seen)
 print(f'first solution: {unique_position_count}')
+
+# head and 9 knots
+starting_positions = [complex(0, 0)] * 10
+ninth_knot_position_seen = set()
+
+
+def execute_movement_multiple_knots(positions: list, movement: Movement):
+    for _ in range(movement.times):
+        for i in range(len(positions)):
+            if i == 0:
+                current_knot_final_position = movement.execute_head_move(positions[i])
+            else:
+                current_knot_final_position = movement.execute_knot_move(
+                    prev_knot_final_position=positions[i - 1],
+                    current_knot_starting_position=positions[i]
+                )
+            positions[i] = current_knot_final_position
+            if i == 9:
+                ninth_knot_position_seen.add(current_knot_final_position)
+    return positions
+
+
+reduce(execute_movement_multiple_knots, rope_movements, starting_positions)
+unique_position_count = len(ninth_knot_position_seen)
+print(f'second solution: {unique_position_count}')
