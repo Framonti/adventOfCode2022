@@ -1,5 +1,6 @@
-from src.challenges import read_input_removing_new_line
 from instruction import Instruction
+from monitor import Monitor
+from src.challenges import read_input_removing_new_line
 
 input_instructions_raw = read_input_removing_new_line('input.txt')
 
@@ -26,4 +27,11 @@ interesting_signals = [20, 60, 100, 140, 180, 220]
 total_interesting_signals = sum(list(signal_values[i] for i in interesting_signals))
 
 print(f'first solution: {total_interesting_signals}')
-a = 1
+
+monitor = Monitor()
+
+[monitor.write_pixel(clock_value=x_registry_value_each_clock[0], x_registry_value=x_registry_value_each_clock[1])
+ for x_registry_value_each_clock in x_registry_values_each_clock]
+
+print(f'second solution:\n'
+      f'{monitor}')
