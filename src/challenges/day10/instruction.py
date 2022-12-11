@@ -6,4 +6,3 @@ class Instruction:
             self.instruction = 'add'
             split_instruction = raw_instruction.split(' ')
             self.value = int(split_instruction[1])
-

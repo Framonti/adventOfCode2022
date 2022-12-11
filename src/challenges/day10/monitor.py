@@ -2,9 +2,10 @@ import numpy as np
 
 
 class Monitor:
+    monitor_width = 40
+    monitor_height = 6
+
     def __init__(self):
-        self.monitor_width = 40
-        self.monitor_height = 6
         self.grid = np.array([['.'] * self.monitor_width] * self.monitor_height)
 
     def __str__(self):

@@ -1,8 +1,6 @@
 import string
-from typing import Dict
-from src.challenges import split_list_into_chunks
 
-from src.challenges import read_input_removing_new_line
+from src.challenges import read_input_removing_new_line, split_list_into_chunks
 
 rucksack_data = read_input_removing_new_line('input.txt')
 
@@ -12,7 +10,7 @@ rucksack_data_compartments_split = [[rucksack_items[:len(rucksack_items) // 2],
 common_items = [list(set(compartments[0]).intersection(compartments[1])) for compartments in
                 rucksack_data_compartments_split]
 
-priorities: Dict = dict()
+priorities = dict()
 for index, letter in enumerate(string.ascii_letters):
     priorities[letter] = index + 1
 
