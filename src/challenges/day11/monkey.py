@@ -14,11 +14,12 @@ class Monkey:
         self.monkey_test_false = int(raw_monkey_input[5].split(' ')[-1])
         self.inspect_count = 0
 
-    def execute_turn(self, monkeys: list, is_relief_active: bool):
+    def execute_turn(self, monkeys: list, modules_mcm: int, is_relief_active: bool):
         for item_worry_level in self.item_worry_levels:
             new_worry_level = self.__inspect_item__(item_worry_level)
             if is_relief_active:
                 new_worry_level = self.__relief__(new_worry_level)
+            new_worry_level = new_worry_level % modules_mcm
             monkey_to_throw = monkeys[self.__test__(new_worry_level)]
             self.__throw__(new_worry_level, monkey_to_throw)
             self.item_worry_levels = []
