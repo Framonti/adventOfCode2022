@@ -15,4 +15,4 @@ def split_list_into_chunks(list_to_split, chuck_size):
 
 
 def group_by_separator(input_data, separator=''):
-    return [list(group) for is_key, group in groupby(input_data, lambda sep: sep == '') if not is_key]
+    return [list(group) for is_key, group in groupby(input_data, lambda sep: sep == separator) if not is_key]
