@@ -1,6 +1,6 @@
 from src.challenges import read_input_removing_new_line
-from cave import Cave
-from sand_movements import execute_grain_sand_movement
+from cave import Cave, CaveWithFloor
+from sand_movements import execute_grain_sand_movement_abyss, execute_grain_sand_movement_floor
 
 raw_rock_paths = read_input_removing_new_line('input.txt')
 
@@ -18,7 +18,7 @@ cave = Cave(rock_paths)
 
 blocked_sand_grains = 0
 while True:
-    is_in_the_void = execute_grain_sand_movement(cave)
+    is_in_the_void = execute_grain_sand_movement_abyss(cave)
     if is_in_the_void:
         break
     blocked_sand_grains += 1
@@ -26,4 +26,13 @@ while True:
 
 print(f'first solution: {blocked_sand_grains}')
 
-a = 1
+cave_with_floor = CaveWithFloor(rock_paths)
+
+blocked_sand_grains = 0
+while True:
+    has_sand_stopped_puring = execute_grain_sand_movement_floor(cave_with_floor)
+    blocked_sand_grains += 1
+    if has_sand_stopped_puring:
+        break
+
+print(f'second solution: {blocked_sand_grains}')
