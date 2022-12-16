@@ -24,3 +24,7 @@ def sort_and_get_top_n_elem(list_to_sort: list, top_n: int, sorting_function=Non
         sorted_list = sorted(list_to_sort, key=sorting_function, reverse=True)
     top_n = sorted_list[:top_n]
     return top_n
+
+
+def extract_and_convert_digit_from_string(string_to_convert):
+    return int(''.join(i for i in string_to_convert if i.isdigit() or i == '-'))
